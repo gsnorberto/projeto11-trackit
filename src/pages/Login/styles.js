@@ -43,6 +43,9 @@ export const Button = styled.button`
     margin-bottom: 25px;
     font-size: 20px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover{
         opacity: 0.8;
@@ -51,6 +54,8 @@ export const Button = styled.button`
 export const Btn = styled.div`
     color: ${props => props.color};
     text-decoration: underline ${props => props.color};
+    
+    
     &:hover{
         opacity: 0.8;
     }

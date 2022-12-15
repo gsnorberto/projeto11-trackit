@@ -89,6 +89,9 @@ export const ConfirmButton = styled.button`
     background-color: ${props => props.color};
     color: #FFFFFF;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover{
         opacity: 0.8;

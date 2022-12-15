@@ -1,13 +1,17 @@
+import { useState } from "react";
 import { HabitsArea, AddHabit, Title, Button, NoHabits, NewHabit, Input, DaysWeek, ButtonsArea, CancelButton, ConfirmButton, RegisteredHabits } from "./styles";
 import { backgroundColor } from "../../constants/colors";
 import { mainColor, secondaryColor, inputColor, textColor } from "../../constants/colors";
 import DayWeekButtons from "../../components/DayWeekButtons";
 import RegisteredHabit from "../../components/RegisteredHabit";
+import { ThreeDots } from "react-loader-spinner";
+
 
 export default () => {
     let array = [{}, {}];
+    const [loading, setLoading] = useState(false);
 
-    return(
+    return (
         <HabitsArea color={backgroundColor}>
             <AddHabit>
                 <Title color={secondaryColor}>Meus hábitos</Title>
@@ -15,18 +19,30 @@ export default () => {
             </AddHabit>
 
             <NewHabit>
-                <Input inputColor={inputColor} color={textColor}  placeholder="nome do hábito"></Input>
+                <Input inputColor={inputColor} color={textColor} placeholder="nome do hábito"></Input>
                 <DaysWeek>
                     <DayWeekButtons />
                 </DaysWeek>
                 <ButtonsArea>
                     <CancelButton color={mainColor}>Cancelar</CancelButton>
-                    <ConfirmButton color={mainColor}>Salvar</ConfirmButton>
+                    <ConfirmButton color={mainColor}>
+                        <ThreeDots
+                            height="30"
+                            width="40"
+                            radius="9"
+                            color="#FFFFFF"
+                            ariaLabel="three-dots-loading"
+                            wrapperStyle={{}}
+                            wrapperClassName=""
+                            visible={loading}
+                        />
+                        {loading ? '' : 'Salvar'}
+                    </ConfirmButton>
                 </ButtonsArea>
             </NewHabit>
 
             <RegisteredHabits>
-                {array.map((a, ind)=> <RegisteredHabit key={ind} />)}
+                {array.map((a, ind) => <RegisteredHabit key={ind} />)}
             </RegisteredHabits>
 
 

@@ -43,6 +43,9 @@ export const Button = styled.button`
     margin-bottom: 25px;
     font-size: 20px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover{
         opacity: 0.8;
