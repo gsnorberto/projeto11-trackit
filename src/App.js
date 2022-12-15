@@ -1,8 +1,11 @@
 import PrivateRoutes from "./routes/private.routes";
 import PublicRoutes from "./routes/public.routes";
+import { useContext } from "react";
+
+import { Context } from "./context/AuthContext";
 
 function App() {
-  let auth = false;
+  const { auth } = useContext(Context)
   
   return auth ? <PrivateRoutes /> : <PublicRoutes />
 }

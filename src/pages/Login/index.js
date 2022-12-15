@@ -4,8 +4,12 @@ import { Logo, Input, Button, LoginArea, Btn } from "./styles";
 import logoImg from "../../assets/imgs/logo.png";
 import { mainColor, inputColor, textColor } from "../../constants/colors";
 import { ThreeDots } from "react-loader-spinner";
+import { useContext } from "react";
+
+import { Context } from "../../context/AuthContext";
 
 export default () => {
+    let { auth, setAuth} = useContext(Context);
     const [loading, setLoading] = useState(false);
 
     return (
