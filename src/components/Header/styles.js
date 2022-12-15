@@ -5,7 +5,7 @@ export const HeaderArea = styled.div`
     top: 0;
     left: 0;
     font-family: 'Playball', cursive;
-    background-color: #126BA5;
+    background-color: ${props => props.color};
     width: 100%;
     height: 70px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);

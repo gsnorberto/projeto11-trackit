@@ -1,5 +1,10 @@
+import { TodayArea } from "./styles";
+import { backgroundColor } from "../../constants/colors";
+
 export default () => {
     return(
-        <div></div>
+        <TodayArea color={backgroundColor}>
+
+        </TodayArea>
     );
 }

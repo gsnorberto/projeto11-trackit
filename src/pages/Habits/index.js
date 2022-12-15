@@ -1,5 +1,10 @@
+import { HabitsArea } from "./styles";
+import { backgroundColor } from "../../constants/colors";
+
 export default () => {
     return(
-        <div></div>
+        <HabitsArea color={backgroundColor}>
+
+        </HabitsArea>
     );
 }

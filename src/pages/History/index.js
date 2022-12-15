@@ -1,5 +1,10 @@
+import { HistoryArea } from "./styles";
+import { backgroundColor } from "../../constants/colors";
+
 export default () => {
     return(
-        <div></div>
+        <HistoryArea color={ backgroundColor }>
+
+        </HistoryArea>
     );
 }
