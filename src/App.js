@@ -7,4 +7,4 @@ function App() {
   return auth ? <PrivateRoutes /> : <PublicRoutes />
 }
 
-export default App;
+export default App; 

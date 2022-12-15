@@ -18,7 +18,7 @@ export const Logo = styled.img`
 `
 export const Input = styled.input`
     font-family: 'Lexend Deca', sans-serif;
-    border: 1px solid #D4D4D4;
+    border: 1px solid ${props => props.inputColor};
     margin-bottom: 5px;
     height: 45px;
     width: 300px;
@@ -26,9 +26,10 @@ export const Input = styled.input`
     outline: none;
     border-radius: 5px;
     font-size: 20px;
+    color: ${props => props.color};
 
     &::placeholder{
-        color: #DBDBDB;
+        color: ${props => props.inputColor};
     }
 `
 export const Button = styled.button`

@@ -15,6 +15,11 @@ export const FooterArea = styled.div`
 `
 export const Button = styled.div`
     color: ${props => props.color};;
+    cursor: pointer;
+
+    &:hover{
+        opacity: 0.8;
+    }
 `
 export const CenterButton = styled.div`
     position: fixed;
@@ -28,8 +33,11 @@ export const CenterButton = styled.div`
     justify-content: center;
     align-items: center;
     color: #FFFFFF;
+    cursor: pointer;
 
-    
+    &:hover{
+        opacity: 0.9;
+    }
 `
 
 export const Border = styled.div`
@@ -40,5 +48,4 @@ export const Border = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    
 `
