@@ -26,7 +26,7 @@ export default () => {
             </NewHabit>
 
             <RegisteredHabits>
-                {array.map(a => <RegisteredHabit />)}
+                {array.map((a, ind)=> <RegisteredHabit key={ind} />)}
             </RegisteredHabits>
 
 
