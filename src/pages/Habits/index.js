@@ -13,15 +13,17 @@ import { BASE_URL } from "../../constants/urls";
 
 
 export default () => {
-    let array = [{}, {}];
     let { userData } = useContext(Context);
     let navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [listHabits, setListHabits] = useState([]);
-    
+    const [showRegister, setShowRegister] = useState(false);
+    const [selectedDays, setSelectedDays] = useState([]);
+    const [habitName, setHabitName] = useState('');
+
     // Redireciona para home se o usuário não estiver autenticado
     useEffect(() => {
-        if(!userData){
+        if (!userData) {
             navigate("/");
         } else {
             getHabits();
@@ -43,44 +45,96 @@ export default () => {
             })
     }
 
+    // Adicionar Novo hábito
+    const addHabit = () => {
+        if(habitName === ''){
+            alert("Digite um título para seu hábito");
+        } else if (selectedDays.length === 0){
+            alert("Selecione os dias da semana")
+        } else {
+            setLoading(true);
+
+            let data = {
+                name: habitName,
+                days: selectedDays
+            }
+
+            const config = {
+                headers: { Authorization: `Bearer ${userData.token}` }
+            }
+
+            axios.post(BASE_URL + "/habits", data, config)
+                .then((res) => {
+                    setLoading(false);
+                    setHabitName('');
+                    setSelectedDays([]);
+                    getHabits();
+                })
+                .catch((err) => {
+                    localStorage.removeItem("userData");
+                    navigate("/");
+                });
+        }
+    }
+
     return (
         <HabitsArea color={backgroundColor}>
             <AddHabit>
                 <Title color={secondaryColor}>Meus hábitos</Title>
-                <Button color={mainColor}>+</Button>
+                <Button onClick={() => setShowRegister(true)} color={mainColor}>+</Button>
             </AddHabit>
 
-            <NewHabit>
-                <Input inputColor={inputColor} color={textColor} placeholder="nome do hábito"></Input>
-                <DaysWeek>
-                    <DayWeekButtons />
-                </DaysWeek>
-                <ButtonsArea>
-                    <CancelButton color={mainColor}>Cancelar</CancelButton>
-                    <ConfirmButton color={mainColor}>
-                        <ThreeDots
-                            height="30"
-                            width="40"
-                            radius="9"
-                            color="#FFFFFF"
-                            ariaLabel="three-dots-loading"
-                            wrapperStyle={{}}
-                            wrapperClassName=""
-                            visible={loading}
+            {showRegister &&
+                <NewHabit>
+                    <Input
+                        value={habitName}
+                        onChange={(e) => setHabitName(e.target.value)}
+                        inputColor={inputColor}
+                        color={textColor} placeholder="nome do hábito"
+                    />
+                    <DaysWeek>
+                        <DayWeekButtons
+                            selectedDays={selectedDays}
+                            setSelectedDays={setSelectedDays}
+                            disabled={false}
                         />
-                        {loading ? '' : 'Salvar'}
-                    </ConfirmButton>
-                </ButtonsArea>
-            </NewHabit>
+                    </DaysWeek>
+                    <ButtonsArea>
+                        <CancelButton onClick={() => setShowRegister(false)} color={mainColor}>Cancelar</CancelButton>
+                        <ConfirmButton onClick={addHabit} color={mainColor}>
+                            <ThreeDots
+                                height="30"
+                                width="40"
+                                radius="9"
+                                color="#FFFFFF"
+                                ariaLabel="three-dots-loading"
+                                wrapperStyle={{}}
+                                wrapperClassName=""
+                                visible={loading}
+                            />
+                            {loading ? '' : 'Salvar'}
+                        </ConfirmButton>
+                    </ButtonsArea>
+                </NewHabit>
+            }
 
-            <RegisteredHabits>
-                {array.map((a, ind) => <RegisteredHabit key={ind} />)}
-            </RegisteredHabits>
+            {listHabits.length === 0 ?
+                <NoHabits color={textColor}>
+                    Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+                </NoHabits> :
+
+                <RegisteredHabits>
+                    {listHabits.map((habit, ind) => (
+                        <RegisteredHabit
+                            key={ind}
+                            id={habit.id}
+                            name={habit.name}
+                            days={habit.days}
+                        />))}
+                </RegisteredHabits>
+            }
 
 
-            <NoHabits color={textColor}>
-                Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
-            </NoHabits>
         </HabitsArea>
     );
 }
