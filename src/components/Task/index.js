@@ -8,8 +8,9 @@ import { BASE_URL } from '../../constants/urls';
 import { useNavigate } from 'react-router';
 
 export default ({ id, name, done, currentSequence, highestSequence, getHabitsToday }) => {
-    let { setAuth, userData } = useContext(Context);
+    let { userData } = useContext(Context);
     let navigate = useNavigate();
+
 
     // Marcar hábito como feito
     const checkHabit = () => {
@@ -24,7 +25,6 @@ export default ({ id, name, done, currentSequence, highestSequence, getHabitsTod
             })
             .catch(err => {
                 alert("Ops! Ocorreu um erro ao marcar a tarefa: ");
-                setAuth(false);
                 navigate("/");
             })
     }
@@ -55,7 +55,7 @@ export default ({ id, name, done, currentSequence, highestSequence, getHabitsTod
             </TextArea>
             <CheckIcon
                 checked={done}
-                onClick={done ? uncheckHabit() : checkHabit()}
+                onClick={done ? uncheckHabit : checkHabit}
                 src={checkIcon}
             />
         </TaskArea>

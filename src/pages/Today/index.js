@@ -13,15 +13,14 @@ import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 
 export default () => {
-    let { auth, setAuth, userData, habitsPercentage, setHabitsPercentage } = useContext(Context);
+    let { userData, habitsPercentage, setHabitsPercentage } = useContext(Context);
     let navigate = useNavigate();
     let dayJS = dayjs()
     const [habitsToday, setHabitsToday] = useState([]);
 
     // Redireciona para home se o usuário não estiver autenticado
     useEffect(() => {
-        if (!auth) {
-            console.log("ok");
+        if (!userData) {
             navigate("/");
         } else {
             getHabitsToday();
@@ -40,7 +39,7 @@ export default () => {
             })
             .catch((error) => {
                 alert(error.response.data.message);
-                setAuth(false);
+                localStorage.removeItem("userData");
                 navigate("/");
             });
     }

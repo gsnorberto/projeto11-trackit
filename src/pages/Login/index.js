@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Logo, Input, Button, LoginArea, Btn, Form } from "./styles";
 import logoImg from "../../assets/imgs/logo.png";
@@ -12,10 +12,17 @@ import { Context } from "../../context/AuthContext";
 
 export default () => {
     let navigate = useNavigate();
-    let { auth, setAuth, setUserData } = useContext(Context);
+    let { userData } = useContext(Context);
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    //Direciona para página "Hoje" se o usuário já estiver armazenado
+    useEffect(() => {
+        if(userData){
+            navigate("/hoje")
+        }
+    }, []);
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -29,8 +36,7 @@ export default () => {
             axios.post( BASE_URL + '/auth/login' , data)
                 .then((response) => {
                     setLoading(false);
-                    setAuth(true);
-                    setUserData(response.data)
+                    localStorage.setItem('userData', JSON.stringify(response.data));
                     navigate("/hoje")
                 } )
                 .catch((error) => {

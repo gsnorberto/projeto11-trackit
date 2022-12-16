@@ -1,17 +1,18 @@
 import Routes from "./routes";
-import { Context } from "./context/AuthContext";
-import { useContext } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-function App() {
-  let { auth } = useContext(Context);
+import { useContext } from "react";
+import { Context } from "./context/AuthContext";
 
-  return(
+function App() {
+  let { userData } = useContext(Context);
+
+  return (
     <>
-      { auth && <Header />}
-      <Routes /> 
-      { auth && <Footer />}
+      {userData && <Header />}
+      <Routes />
+      {userData && <Footer />}
     </>
   )
 }

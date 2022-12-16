@@ -8,24 +8,40 @@ import { ThreeDots } from "react-loader-spinner";
 import { useContext } from "react";
 import { Context } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../../constants/urls";
 
 
 export default () => {
     let array = [{}, {}];
-    let { auth, setAuth } = useContext(Context);
+    let { userData } = useContext(Context);
     let navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const [listHabits, setListHabits] = useState([]);
     
     // Redireciona para home se o usuário não estiver autenticado
     useEffect(() => {
-        if(!auth){
+        if(!userData){
             navigate("/");
         } else {
-
+            getHabits();
         }
     }, []);
 
     // Carregar hábitos do usuário
+    const getHabits = () => {
+        const config = {
+            headers: { Authorization: `Bearer ${userData.token}` }
+        }
+        axios.get(BASE_URL + "/habits", config)
+            .then(response => {
+                setListHabits(response.data);
+            })
+            .catch(err => {
+                localStorage.removeItem("userData");
+                navigate("/");
+            })
+    }
 
     return (
         <HabitsArea color={backgroundColor}>
