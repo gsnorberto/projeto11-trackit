@@ -36,14 +36,13 @@ export default () => {
                 password
             };
 
-            axios.post(BASE_URL + "auth/sign-up", data)
+            axios.post(BASE_URL + "/auth/sign-up", data)
                 .then((res) => {
                     setLoading(false);
                     navigate('/');
                 })
-                .catch((err) => {
-                    console.log(err);
-                    alert("Erro ao cadastrar: " + err.response.data.message);
+                .catch((error) => {
+                    alert("Erro ao cadastrar: " + error.response.data.message);
                     setLoading(false);
                 });
         }

@@ -24,6 +24,7 @@ export const Input = styled.input`
     border-radius: 5px;
     font-size: 20px;
     color: ${props => props.color};
+    background-color: ${props => props.disabled ? '#F2F2F2' : ''};
 
     &::placeholder{
         color: ${props => props.inputColor};
@@ -56,5 +57,10 @@ export const Btn = styled.div`
     &:hover{
         opacity: 0.8;
     }
+`
+export const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 `
 
