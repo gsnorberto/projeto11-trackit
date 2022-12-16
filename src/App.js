@@ -1,13 +1,19 @@
-import PrivateRoutes from "./routes/private.routes";
-import PublicRoutes from "./routes/public.routes";
-import { useContext } from "react";
-
+import Routes from "./routes";
 import { Context } from "./context/AuthContext";
+import { useContext } from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
-  const { auth } = useContext(Context)
-  
-  return auth ? <PrivateRoutes /> : <PublicRoutes />
+  let { auth } = useContext(Context);
+
+  return(
+    <>
+      { auth && <Header />}
+      <Routes /> 
+      { auth && <Footer />}
+    </>
+  )
 }
 
 export default App; 

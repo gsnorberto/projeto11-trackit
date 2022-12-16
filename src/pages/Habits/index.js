@@ -1,15 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HabitsArea, AddHabit, Title, Button, NoHabits, NewHabit, Input, DaysWeek, ButtonsArea, CancelButton, ConfirmButton, RegisteredHabits } from "./styles";
 import { backgroundColor } from "../../constants/colors";
 import { mainColor, secondaryColor, inputColor, textColor } from "../../constants/colors";
 import DayWeekButtons from "../../components/DayWeekButtons";
 import RegisteredHabit from "../../components/RegisteredHabit";
 import { ThreeDots } from "react-loader-spinner";
+import { useContext } from "react";
+import { Context } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 
 export default () => {
     let array = [{}, {}];
+    let { auth } = useContext(Context);
+    let navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    
+    // Redireciona para home se o usuário não estiver autenticado
+    useEffect(() => {
+        if(!auth){
+            console.log("ok");
+            navigate("/");
+        }
+    }, []);
 
     return (
         <HabitsArea color={backgroundColor}>
