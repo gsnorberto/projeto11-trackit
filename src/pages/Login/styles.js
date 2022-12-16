@@ -8,9 +8,6 @@ export const LoginArea = styled.div`
     justify-content: center;
     align-items: center;
 
-    .link{
-
-    }
 `
 export const Logo = styled.img`
     width: 180px;

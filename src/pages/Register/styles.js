@@ -58,3 +58,7 @@ export const Btn = styled.div`
         opacity: 0.8;
     }
 `
+export const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+`

@@ -9,7 +9,7 @@ import { useContext } from "react";
 import { Context } from "../../context/AuthContext";
 
 export default () => {
-    let { auth, setAuth} = useContext(Context);
+    let { auth, setAuth } = useContext(Context);
     const [loading, setLoading] = useState(false);
 
     return (
@@ -30,10 +30,10 @@ export default () => {
                 />
                 {loading ? '' : 'Entrar'}
             </Button>
-            <Link>
-                <Btn color={mainColor}> Não tem uma conta? Cadastre-se </Btn>
 
-            </Link>
+            <Btn color={mainColor}> <Link to="/cadastro">Não tem uma conta? Cadastre-se</Link> </Btn>
+
+
         </LoginArea>
     );
 }
