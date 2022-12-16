@@ -84,6 +84,7 @@ export default () => {
                 <Button onClick={() => setShowRegister(true)} color={mainColor}>+</Button>
             </AddHabit>
 
+            {/* Área de cadastro de hábito */}
             {showRegister &&
                 <NewHabit>
                     <Input
@@ -118,6 +119,7 @@ export default () => {
                 </NewHabit>
             }
 
+            {/* Hábitos cadastrados */}
             {listHabits.length === 0 ?
                 <NoHabits color={textColor}>
                     Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
@@ -130,6 +132,7 @@ export default () => {
                             id={habit.id}
                             name={habit.name}
                             days={habit.days}
+                            getHabits={getHabits}
                         />))}
                 </RegisteredHabits>
             }
