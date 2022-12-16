@@ -5,9 +5,11 @@ import axios from 'axios';
 import { useContext } from 'react';
 import { Context } from '../../context/AuthContext';
 import { BASE_URL } from '../../constants/urls';
+import { useNavigate } from 'react-router';
 
 export default ({ id, name, done, currentSequence, highestSequence, getHabitsToday }) => {
-    let { userData } = useContext(Context);
+    let { setAuth, userData } = useContext(Context);
+    let navigate = useNavigate();
 
     // Marcar hábito como feito
     const checkHabit = () => {
@@ -21,7 +23,9 @@ export default ({ id, name, done, currentSequence, highestSequence, getHabitsTod
                 getHabitsToday();
             })
             .catch(err => {
-                alert("Ops! Ocorreu um erro ao marcar a tarefa: ")
+                alert("Ops! Ocorreu um erro ao marcar a tarefa: ");
+                setAuth(false);
+                navigate("/");
             })
     }
 
@@ -37,7 +41,8 @@ export default ({ id, name, done, currentSequence, highestSequence, getHabitsTod
                 getHabitsToday();
             })
             .catch(err => {
-                alert("Ops! Ocorreu um erro ao desmarcar a tarefa!")
+                alert("Ops! Ocorreu um erro ao desmarcar a tarefa!");
+                navigate("/");
             })
     }
 

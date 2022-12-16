@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 
 export default () => {
-    let { auth, userData, habitsPercentage, setHabitsPercentage } = useContext(Context);
+    let { auth, setAuth, userData, habitsPercentage, setHabitsPercentage } = useContext(Context);
     let navigate = useNavigate();
     let dayJS = dayjs()
     const [habitsToday, setHabitsToday] = useState([]);
@@ -40,6 +40,7 @@ export default () => {
             })
             .catch((error) => {
                 alert(error.response.data.message);
+                setAuth(false);
                 navigate("/");
             });
     }

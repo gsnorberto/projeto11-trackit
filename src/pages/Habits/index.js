@@ -12,17 +12,20 @@ import { useNavigate } from "react-router-dom";
 
 export default () => {
     let array = [{}, {}];
-    let { auth } = useContext(Context);
+    let { auth, setAuth } = useContext(Context);
     let navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     
     // Redireciona para home se o usuário não estiver autenticado
     useEffect(() => {
         if(!auth){
-            console.log("ok");
             navigate("/");
+        } else {
+
         }
     }, []);
+
+    // Carregar hábitos do usuário
 
     return (
         <HabitsArea color={backgroundColor}>
