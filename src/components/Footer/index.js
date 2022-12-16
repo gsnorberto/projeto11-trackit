@@ -2,16 +2,19 @@ import { FooterArea, Button, CenterButton, Border } from "./styles";
 import { mainColor } from "../../constants/colors";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
+import { useContext } from "react";
+import { Context } from "../../context/AuthContext"; 
 
 export default () => {
-    const percentage = 40;
+    let { habitsPercentage } = useContext(Context);
+    
     return (
         <FooterArea>
             <Button color={mainColor}>Hábitos</Button>
             <CenterButton color={mainColor}>
                 <CircularProgressbar
                     className="progressBar"
-                    value={percentage}
+                    value={habitsPercentage}
                     text={`Hoje`}
                     background
                     backgroundPadding={6}

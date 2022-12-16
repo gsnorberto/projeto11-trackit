@@ -6,9 +6,19 @@ const Context = createContext();
 function AuthProvider({ children }) {
     const [auth, setAuth] = useState(false);
     const [userData, setUserData] = useState({});
+    const [habitsPercentage, setHabitsPercentage] = useState(0);
+
+    const data = {
+        auth,
+        setAuth,
+        userData,
+        setUserData,
+        habitsPercentage,
+        setHabitsPercentage
+    }
 
     return(
-        <Context.Provider value={{auth, setAuth, userData, setUserData}}>
+        <Context.Provider value={data}>
             {children}
         </Context.Provider>
     )

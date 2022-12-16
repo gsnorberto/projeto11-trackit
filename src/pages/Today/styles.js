@@ -14,7 +14,7 @@ export const Title = styled.div`
     font-size: 23px;
 `
 export const SubTitle = styled.div`
-    color: #BABABA;
+    color: ${props => props.color};
     font-size: 18px;
     margin-bottom: 30px;
 `
