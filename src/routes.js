@@ -6,11 +6,19 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
 
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+import { useContext } from "react";
+import { Context } from "./context/AuthContext";
 
 
 export default () => {
+    let { userData } = useContext(Context);
+
     return (
         <BrowserRouter>
+            {userData && <Header />}
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/cadastro" element={<Register />} />
@@ -19,6 +27,7 @@ export default () => {
                 <Route path="/historico" element={<History />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
+            {userData && <Footer />}
         </BrowserRouter>
     );
 }

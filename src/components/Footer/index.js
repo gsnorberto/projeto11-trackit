@@ -5,13 +5,21 @@ import 'react-circular-progressbar/dist/styles.css';
 import { useContext } from "react";
 import { Context } from "../../context/AuthContext"; 
 
+import { useNavigate } from "react-router-dom";
+
 export default () => {
+    let navigate = useNavigate();
+
+    const handleNavigate = (link) => {
+        navigate(link);
+    }
+    
     let { habitsPercentage } = useContext(Context);
     
     return (
         <FooterArea>
-            <Button color={mainColor}>Hábitos</Button>
-            <CenterButton color={mainColor}>
+            <Button onClick={() => handleNavigate("/habitos")} color={mainColor}> Hábitos </Button>
+            <CenterButton onClick={() => handleNavigate("/hoje")} color={mainColor}>
                 <CircularProgressbar
                     className="progressBar"
                     value={habitsPercentage}
@@ -26,7 +34,7 @@ export default () => {
                     })}
                 />
             </CenterButton>
-            <Button color={mainColor}>Histórico</Button>
+            <Button onClick={() => handleNavigate("/historico")} color={mainColor}>Histórico</Button>
         </FooterArea>
     );
 }

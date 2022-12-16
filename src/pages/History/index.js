@@ -6,15 +6,15 @@ import { Context } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default () => {
-    let { auth } = useContext(Context);
+    let { userData } = useContext(Context);
     let navigate = useNavigate();
     
-
     // Redireciona para home se o usuário não estiver autenticado
     useEffect(() => {
-        if(!auth){
-            console.log("ok");
+        if(!userData){
             navigate("/");
+        } else {
+            
         }
     }, []);
 
