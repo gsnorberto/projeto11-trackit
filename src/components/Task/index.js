@@ -13,35 +13,25 @@ export default ({ id, name, done, currentSequence, highestSequence, getHabitsTod
 
 
     // Marcar hábito como feito
-    const checkHabit = () => {
+    const handleCheckHabit = () => {
+        let url;
         const config = {
             headers: { Authorization: `Bearer ${userData.token}` }
         }
         const body = {}
 
-        axios.post(BASE_URL + `habits/${id}/check`, body, config)
-            .then(() => {
-                getHabitsToday();
-            })
-            .catch(err => {
-                alert("Ops! Ocorreu um erro ao marcar a tarefa: ");
-                navigate("/");
-            })
-    }
-
-    // Desmarcar hábito como feito
-    const uncheckHabit = () => {
-        const config = {
-            headers: { Authorization: `Bearer ${userData.token}` }
+        if(done){ // Se a tarefa estiver marcada como feita
+            url = BASE_URL + `/habits/${id}/uncheck`
+        } else {
+            url = BASE_URL + `/habits/${id}/check`
         }
-        const body = {}
 
-        axios.post(BASE_URL + `habits/${id}/uncheck`, body, config)
+        axios.post(url, body, config)
             .then(() => {
                 getHabitsToday();
             })
             .catch(err => {
-                alert("Ops! Ocorreu um erro ao desmarcar a tarefa!");
+                alert("Ops! Ocorreu um erro");
                 navigate("/");
             })
     }
@@ -55,7 +45,7 @@ export default ({ id, name, done, currentSequence, highestSequence, getHabitsTod
             </TextArea>
             <CheckIcon
                 checked={done}
-                onClick={done ? uncheckHabit : checkHabit}
+                onClick={handleCheckHabit}
                 src={checkIcon}
             />
         </TaskArea>

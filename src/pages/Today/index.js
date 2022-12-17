@@ -35,7 +35,7 @@ export default () => {
         axios.get(BASE_URL + "/habits/today", config)
             .then((response) => {
                 setHabitsToday(response.data);
-                percentage();
+                percentage(response.data);
             })
             .catch((error) => {
                 alert(error.response.data.message);
@@ -58,13 +58,11 @@ export default () => {
     }
 
     // Porcentagem de hábitos concluídas
-    const percentage = () => {
-        setHabitsPercentage((finishedHabits() / habitsToday.length) * 100);
-    }
+    const percentage = (data) => {
 
-    // Quantidade de hábitos concluídas
-    const finishedHabits = () => {
-        return (habitsToday.filter(habit => habit.done)).length;
+        let countDone = data.filter(habit => habit.done).length;
+        console.log(countDone);
+        setHabitsPercentage(((countDone.toFixed(2) / data.length) * 100).toFixed(2));
     }
 
     return (
@@ -79,7 +77,7 @@ export default () => {
             {/* Há hábitos cadastrados no dia atual */}
             {habitsToday.length > 0 &&
                 <>
-                    {finishedHabits() === 0 ?
+                    {habitsPercentage === 0 ?
                         <SubTitle color="#BABABA">Nenhum hábito concluído ainda</SubTitle> :
                         <SubTitle color="#8FC549">{habitsPercentage}% dos hábitos concluídos</SubTitle>
                     }
