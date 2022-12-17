@@ -1,4 +1,4 @@
-import { TaskArea, TextArea, Title, SubTitle, CheckIcon, Span } from './styles';
+import { TaskArea, TextArea, Title, SubTitle, Span } from './styles';
 import { textColor } from '../../constants/colors';
 import checkIcon from "../../assets/icons/checkbox.svg";
 import axios from 'axios';
@@ -6,6 +6,7 @@ import { BASE_URL } from '../../constants/urls';
 import { useNavigate } from 'react-router';
 import { useContext } from 'react';
 import { Context } from '../../context/AuthContext';
+import { IoCheckbox } from "react-icons/io5";
 
 export default ({ id, name, done, currentSequence, highestSequence, getHabitsToday }) => {
     let { userData } = useContext(Context);
@@ -53,10 +54,11 @@ export default ({ id, name, done, currentSequence, highestSequence, getHabitsTod
                     </Span>
                 </SubTitle>
             </TextArea>
-            <CheckIcon
-                checked={done}
+            <IoCheckbox
+                color={done ? '#8FC549' : '#EBEBEB'}
+                cursor='pointer'
+                fontSize="69px"
                 onClick={handleCheckHabit}
-                src={checkIcon}
             />
         </TaskArea>
     );

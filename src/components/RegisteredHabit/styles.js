@@ -16,6 +16,7 @@ export const HabitArea = styled.div`
 export const Title = styled.div`
     margin-bottom: 10px;
     color: ${props => props.color};
+    word-break: break-all;
 `
 
 export const TrashButton = styled.img`

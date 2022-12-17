@@ -15,6 +15,7 @@ export const HeaderArea = styled.div`
     padding: 0 30px;
     color: #FFFFFF;
     font-size: 40px;
+    z-index: 999;
 `;
 export const Title = styled.div`
 
@@ -22,11 +23,30 @@ export const Title = styled.div`
 export const Menu = styled.div`
     display: flex;
     align-items: center;
+
+    .column{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-right: 15px;
+    }
+    .userName{
+        font-family: 'Lexend Deca', sans-serif;
+        margin-bottom: 5px;
+        font-size: 16px;
+        border: 1px solid #FFFFFF;
+        padding: 2px 3px;
+        border-radius: 5px;
+        background-color: #FFFFFF;
+        color: #126BA5;
+    }
 `;
 export const Button = styled.div`
     font-family: 'Lexend Deca', sans-serif;
-    font-size: 20px;
-    margin-right: 15px;
+    font-size: 15px;
+    padding-right: 3px;
+
+    
     cursor: pointer;
     &:hover{
         opacity: 0.8;

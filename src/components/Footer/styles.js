@@ -12,6 +12,7 @@ export const FooterArea = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 30px;
+    z-index: 999;
 `
 export const Button = styled.div`
     color: ${props => props.color};;

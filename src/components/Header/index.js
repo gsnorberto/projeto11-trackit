@@ -22,7 +22,10 @@ export default () => {
         <HeaderArea color={secondaryColor}>
             <Title>TrackIt</Title>
             <Menu>
-                <Button onClick={handleExit}>Sair</Button>
+                <div className="column">
+                    <div className="userName">{userData.name}</div>
+                    <Button onClick={handleExit}>Sair</Button>
+                </div>
                 <Avatar src={userData.image}></Avatar>
             </Menu>
 

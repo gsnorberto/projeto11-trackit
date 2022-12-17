@@ -30,11 +30,11 @@ export const SubTitle = styled.div`
     color: ${props => props.color};
 `
 
-export const CheckIcon = styled.img`
-    max-height: 69px;
-    filter: ${props => props.checked ? 'invert(98%) sepia(30%) saturate(5982%) hue-rotate(24deg) brightness(93%) contrast(62%)' : 'invert(96%) sepia(0%) saturate(1569%) hue-rotate(269deg) brightness(117%) contrast(81%)'};
-    cursor: pointer;
-`
+// export const CheckIcon = styled.img`
+//     max-height: 69px;
+//     filter: ${props => props.checked ? 'invert(98%) sepia(30%) saturate(5982%) hue-rotate(24deg) brightness(93%) contrast(62%)' : 'invert(96%) sepia(0%) saturate(1569%) hue-rotate(269deg) brightness(117%) contrast(81%)'};
+//     cursor: pointer;
+// `
 
 export const Span = styled.span`
     color: ${props => props.color};
