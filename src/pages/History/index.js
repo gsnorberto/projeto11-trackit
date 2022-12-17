@@ -1,9 +1,10 @@
-import { HistoryArea } from "./styles";
+import { HistoryArea, Title, Desc } from "./styles";
 import { backgroundColor } from "../../constants/colors";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { Context } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { secondaryColor, textColor } from "../../constants/colors";
 
 export default () => {
     let { userData } = useContext(Context);
@@ -20,7 +21,8 @@ export default () => {
 
     return(
         <HistoryArea color={ backgroundColor }>
-
+            <Title color={secondaryColor}>Histórico</Title>
+            <Desc color={textColor}>Em breve você poderá ver o histórico dos seus hábitos aqui!</Desc>
         </HistoryArea>
     );
 }

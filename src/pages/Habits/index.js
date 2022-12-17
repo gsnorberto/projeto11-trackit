@@ -66,13 +66,14 @@ export default () => {
             axios.post(BASE_URL + "/habits", data, config)
                 .then((res) => {
                     setLoading(false);
+                    setShowRegister(false);
                     setHabitName('');
                     setSelectedDays([]);
                     getHabits();
                 })
                 .catch((err) => {
-                    localStorage.removeItem("userData");
-                    navigate("/");
+                    setLoading(false);
+                    alert(err.response.data.message)
                 });
         }
     }
@@ -88,6 +89,7 @@ export default () => {
             {showRegister &&
                 <NewHabit>
                     <Input
+                        disabled={loading}
                         value={habitName}
                         onChange={(e) => setHabitName(e.target.value)}
                         inputColor={inputColor}
@@ -97,12 +99,12 @@ export default () => {
                         <DayWeekButtons
                             selectedDays={selectedDays}
                             setSelectedDays={setSelectedDays}
-                            disabled={false}
+                            disabled={loading}
                         />
                     </DaysWeek>
                     <ButtonsArea>
                         <CancelButton onClick={() => setShowRegister(false)} color={mainColor}>Cancelar</CancelButton>
-                        <ConfirmButton onClick={addHabit} color={mainColor}>
+                        <ConfirmButton disabled={loading} onClick={addHabit} color={mainColor}>
                             <ThreeDots
                                 height="30"
                                 width="40"

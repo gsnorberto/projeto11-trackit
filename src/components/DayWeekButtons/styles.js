@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Button = styled.div`
+export const Button = styled.button`
     border: 1px solid ${props => props.color};
     color: ${props => props.checked ? '#FFFFFF' : props.color};
     background-color: ${props => props.checked ? props.color : '#FFFFFF'};
