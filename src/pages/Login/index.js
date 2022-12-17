@@ -36,8 +36,13 @@ export default () => {
             axios.post( BASE_URL + '/auth/login' , data)
                 .then((response) => {
                     setLoading(false);
-                    addLocalStorage(response.data);
-                    setUserData(response.data);
+                    let dataU = {
+                        name: response.data.name,
+                        image: response.data.image,
+                        token: response.data.token
+                    }
+                    addLocalStorage(dataU);
+                    setUserData(dataU);
                     navigate("/hoje")
                 } )
                 .catch((error) => {

@@ -39,8 +39,6 @@ export default () => {
             })
             .catch((error) => {
                 alert(error.response.data.message);
-                localStorage.removeItem("userData");
-                navigate("/");
             });
     }
 

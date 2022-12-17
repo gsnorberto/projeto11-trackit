@@ -7,15 +7,11 @@ import axios from "axios";
 
 import { BASE_URL } from "../../constants/urls";
 
-import { useNavigate } from "react-router";
-
 import { useContext } from "react";
 import { Context } from "../../context/AuthContext";
 
 export default ({ id, name, days, getHabits }) => {
     let { userData } = useContext(Context);
-    
-    let navigate = useNavigate;
 
     // Deletar Hábito
     const handleDeleteHabit = () => {
@@ -28,8 +24,7 @@ export default ({ id, name, days, getHabits }) => {
                     getHabits();
                 })
                 .catch(err => {
-                    localStorage.removeItem("userData");
-                    navigate("/");
+                    alert(err.response.data.message);
                 })
         }
     }

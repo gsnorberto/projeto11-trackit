@@ -1,6 +1,5 @@
 import { TaskArea, TextArea, Title, SubTitle, Span } from './styles';
 import { textColor } from '../../constants/colors';
-import checkIcon from "../../assets/icons/checkbox.svg";
 import axios from 'axios';
 import { BASE_URL } from '../../constants/urls';
 import { useNavigate } from 'react-router';
