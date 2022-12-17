@@ -4,10 +4,11 @@ import checkIcon from "../../assets/icons/checkbox.svg";
 import axios from 'axios';
 import { BASE_URL } from '../../constants/urls';
 import { useNavigate } from 'react-router';
-import { getLocalStorage } from '../../localStorage';
+import { useContext } from 'react';
+import { Context } from '../../context/AuthContext';
 
 export default ({ id, name, done, currentSequence, highestSequence, getHabitsToday }) => {
-    let locStorage = getLocalStorage();
+    let { userData } = useContext(Context);
     let navigate = useNavigate();
 
 
@@ -15,7 +16,7 @@ export default ({ id, name, done, currentSequence, highestSequence, getHabitsTod
     const handleCheckHabit = () => {
         let url;
         const config = {
-            headers: { Authorization: `Bearer ${locStorage.token}` }
+            headers: { Authorization: `Bearer ${userData.token}` }
         }
         const body = {}
 

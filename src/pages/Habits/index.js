@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { HabitsArea, AddHabit, Title, Button, NoHabits, NewHabit, Input, DaysWeek, ButtonsArea, CancelButton, ConfirmButton, RegisteredHabits } from "./styles";
 import { backgroundColor } from "../../constants/colors";
 import { mainColor, secondaryColor, inputColor, textColor } from "../../constants/colors";
@@ -9,11 +9,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
 
-import { getLocalStorage } from "../../localStorage";
+import { Context } from "../../context/AuthContext"
 
 
 export default () => {
-    let locStorage = getLocalStorage();
+    let { userData } = useContext(Context);
     let navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [listHabits, setListHabits] = useState([]);
@@ -23,7 +23,7 @@ export default () => {
 
     // Redireciona para home se o usuário não estiver autenticado
     useEffect(() => {
-        if (!locStorage) {
+        if (!userData) {
             navigate("/");
         } else {
             getHabits();
@@ -33,7 +33,7 @@ export default () => {
     // Carregar hábitos do usuário
     const getHabits = () => {
         const config = {
-            headers: { Authorization: `Bearer ${locStorage.token}` }
+            headers: { Authorization: `Bearer ${userData.token}` }
         }
         axios.get(BASE_URL + "/habits", config)
             .then(response => {
@@ -60,7 +60,7 @@ export default () => {
             }
 
             const config = {
-                headers: { Authorization: `Bearer ${locStorage.token}` }
+                headers: { Authorization: `Bearer ${userData.token}` }
             }
 
             axios.post(BASE_URL + "/habits", data, config)

@@ -9,10 +9,11 @@ import { BASE_URL } from "../../constants/urls";
 
 import { useNavigate } from "react-router";
 
-import { getLocalStorage } from "../../localStorage";
+import { useContext } from "react";
+import { Context } from "../../context/AuthContext";
 
 export default ({ id, name, days, getHabits }) => {
-    let locStorage = getLocalStorage();
+    let { userData } = useContext(Context);
     
     let navigate = useNavigate;
 
@@ -20,7 +21,7 @@ export default ({ id, name, days, getHabits }) => {
     const handleDeleteHabit = () => {
         if (window.confirm("Tem certeza que deseja excluir esse hábito?")) {
             const config = {
-                headers: { Authorization: `Bearer ${locStorage.token}` }
+                headers: { Authorization: `Bearer ${userData.token}` }
             }
             axios.delete(BASE_URL + `/habits/${id}`, config)
                 .then(res => {

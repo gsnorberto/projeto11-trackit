@@ -10,20 +10,17 @@ import { BASE_URL } from "../../constants/urls";
 import { Context } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-import { getLocalStorage } from "../../localStorage";
-
 import dayjs from "dayjs";
 
 export default () => {
-    let { habitsPercentage, setHabitsPercentage } = useContext(Context);
+    let { userData, habitsPercentage, setHabitsPercentage } = useContext(Context);
     let navigate = useNavigate();
     let dayJS = dayjs()
     const [habitsToday, setHabitsToday] = useState([]);
-    let locStorage = getLocalStorage();
 
     // Redireciona para home se o usuário não estiver autenticado
     useEffect(() => {
-        if (!locStorage) {
+        if (!userData) {
             navigate("/");
         } else {
             getHabitsToday();
@@ -33,7 +30,7 @@ export default () => {
     //Buscar Lista de hábitos de Hoje
     const getHabitsToday = () => {
         const config = {
-            headers: { Authorization: `Bearer ${locStorage.token}` }
+            headers: { Authorization: `Bearer ${userData.token}` }
         }
         axios.get(BASE_URL + "/habits/today", config)
             .then((response) => {

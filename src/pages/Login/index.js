@@ -7,20 +7,19 @@ import { ThreeDots } from "react-loader-spinner";
 import axios from 'axios';
 import { BASE_URL } from "../../constants/urls";
 
-import { getLocalStorage, addLocalStorage } from "../../localStorage";
+import { addLocalStorage } from "../../localStorage";
 import { Context } from "../../context/AuthContext";
 
 export default () => {
-    let { setUserData } = useContext(Context);
+    let { userData, setUserData } = useContext(Context);
     let navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    let locStorage = getLocalStorage();
 
     //Direciona para página "Hoje" se o usuário já estiver armazenado
     useEffect(() => {
-        if(locStorage){
+        if(userData){
             navigate("/hoje")
         }
     }, []);

@@ -1,18 +1,18 @@
 import { HistoryArea, Title, Desc } from "./styles";
 import { backgroundColor } from "../../constants/colors";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { secondaryColor, textColor } from "../../constants/colors";
 
-import { getLocalStorage } from "../../localStorage";
+import { Context } from "../../context/AuthContext";
 
 export default () => {
-    let locStorage = getLocalStorage();
+    let { userData } = useContext(Context)
     let navigate = useNavigate();
     
     // Redireciona para home se o usuário não estiver autenticado
     useEffect(() => {
-        if(!locStorage){
+        if(!userData){
             navigate("/");
         } else {
             
