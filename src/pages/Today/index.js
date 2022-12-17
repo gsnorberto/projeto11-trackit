@@ -59,10 +59,13 @@ export default () => {
 
     // Porcentagem de hábitos concluídas
     const percentage = (data) => {
-
         let countDone = data.filter(habit => habit.done).length;
-        console.log(countDone);
-        setHabitsPercentage(((countDone.toFixed(2) / data.length) * 100).toFixed(2));
+
+        if (countDone === 0) setHabitsPercentage(0)
+        else{
+            let calc = ((countDone / data.length) * 100).toFixed(2);
+            setHabitsPercentage(calc);
+        }
     }
 
     return (
