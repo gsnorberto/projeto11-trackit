@@ -2,13 +2,12 @@ import { TaskArea, TextArea, Title, SubTitle, CheckIcon, Span } from './styles';
 import { textColor } from '../../constants/colors';
 import checkIcon from "../../assets/icons/checkbox.svg";
 import axios from 'axios';
-import { useContext } from 'react';
-import { Context } from '../../context/AuthContext';
 import { BASE_URL } from '../../constants/urls';
 import { useNavigate } from 'react-router';
+import { getLocalStorage } from '../../localStorage';
 
 export default ({ id, name, done, currentSequence, highestSequence, getHabitsToday }) => {
-    let { userData } = useContext(Context);
+    let locStorage = getLocalStorage();
     let navigate = useNavigate();
 
 
@@ -16,7 +15,7 @@ export default ({ id, name, done, currentSequence, highestSequence, getHabitsTod
     const handleCheckHabit = () => {
         let url;
         const config = {
-            headers: { Authorization: `Bearer ${userData.token}` }
+            headers: { Authorization: `Bearer ${locStorage.token}` }
         }
         const body = {}
 

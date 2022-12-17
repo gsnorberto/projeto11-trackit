@@ -12,13 +12,12 @@ import Footer from "./components/Footer";
 import { useContext } from "react";
 import { Context } from "./context/AuthContext";
 
-
 export default () => {
     let { userData } = useContext(Context);
 
     return (
         <BrowserRouter>
-            {userData && <Header />}
+            {userData &&  <Header />}
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/cadastro" element={<Register />} />

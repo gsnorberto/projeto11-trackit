@@ -19,6 +19,19 @@ export const HeaderArea = styled.div`
 export const Title = styled.div`
 
 `;
+export const Menu = styled.div`
+    display: flex;
+    align-items: center;
+`;
+export const Button = styled.div`
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+    &:hover{
+        opacity: 0.8;
+    }
+`;
 export const Avatar = styled.img`
     width: 50px;
     height: 50px;

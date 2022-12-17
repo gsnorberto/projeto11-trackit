@@ -1,25 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Logo, Input, Button, LoginArea, Btn, Form } from "./styles";
 import logoImg from "../../assets/imgs/logo.png";
 import { mainColor, inputColor, textColor } from "../../constants/colors";
 import { ThreeDots } from "react-loader-spinner";
-import { useContext } from "react";
 import axios from 'axios';
 import { BASE_URL } from "../../constants/urls";
 
+import { getLocalStorage, addLocalStorage } from "../../localStorage";
 import { Context } from "../../context/AuthContext";
 
 export default () => {
+    let { setUserData } = useContext(Context);
     let navigate = useNavigate();
-    let { userData } = useContext(Context);
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    let locStorage = getLocalStorage();
 
     //Direciona para página "Hoje" se o usuário já estiver armazenado
     useEffect(() => {
-        if(userData){
+        if(locStorage){
             navigate("/hoje")
         }
     }, []);
@@ -36,7 +37,8 @@ export default () => {
             axios.post( BASE_URL + '/auth/login' , data)
                 .then((response) => {
                     setLoading(false);
-                    localStorage.setItem('userData', JSON.stringify(response.data));
+                    addLocalStorage(response.data);
+                    setUserData(response.data);
                     navigate("/hoje")
                 } )
                 .catch((error) => {
