@@ -6,6 +6,22 @@ export const HistoryArea = styled.div`
     width: 100%;
     background-color: ${props => props.color};
     padding: 70px 30px;
+
+    .calendar-style{
+        width: 100%;
+        border: 0;
+        border-radius: 10px;
+    }
+    .bg-red{
+        padding: 10px 5px;
+        border-radius: 50%;
+        background-color: #EA5766;
+    }
+    .bg-green{
+        padding: 10px 5px;
+        border-radius: 50%;
+        background-color: #8CC654;
+    }
 `
 export const Title = styled.div`
     color: ${props => props.color};
