@@ -1,8 +1,8 @@
-import { HistoryArea, Title, Desc } from "./styles";
+import { HistoryArea, Title } from "./styles";
 import { backgroundColor } from "../../constants/colors";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { secondaryColor, textColor } from "../../constants/colors";
+import { secondaryColor } from "../../constants/colors";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import { useState } from "react";
@@ -17,13 +17,10 @@ export default () => {
     let navigate = useNavigate();
     let dayJS = dayjs()
     const [calendar, setCalendar] = useState(new Date());
-    const [dailyHabits, setDailyHabits] = useState([]);
     const [completeTasks, setCompleteTasks] = useState([]);
     const [uncompleteTasks, setUncompleteTasks] = useState([]);
     const [loading, setLoading] = useState(true);
 
-
-    // 
     useEffect(() => {
         if (!userData) {
             navigate("/");
@@ -31,14 +28,6 @@ export default () => {
             getDailyHabits();
         }
     }, []);
-
-    useEffect(() => {
-        console.log("aqui1 ", uncompleteTasks);
-    }, [uncompleteTasks]);
-    useEffect(() => {
-        console.log("aqui2 ", completeTasks);
-    }, [completeTasks]);
-
 
     // Obter hábitos diário do usuário
     const getDailyHabits = () => {
@@ -48,8 +37,6 @@ export default () => {
 
         axios.get(BASE_URL + '/habits/history/daily', config)
             .then((response) => {
-                setDailyHabits(response.data);
-                console.log(response.data);
                 dateTaks(response.data);
             })
             .catch(error => {
@@ -94,7 +81,6 @@ export default () => {
     return (
         <HistoryArea color={backgroundColor}>
             <Title color={secondaryColor}>Histórico</Title>
-            {/* <Desc color={textColor}>Em breve você poderá ver o histórico dos seus hábitos aqui!</Desc> */}
             {!loading &&
                 <Calendar
                     className="calendar-style"
