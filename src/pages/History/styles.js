@@ -5,7 +5,7 @@ export const HistoryArea = styled.div`
     min-height: 100vh;
     width: 100%;
     background-color: ${props => props.color};
-    padding: 70px 30px;
+    padding: 80px 30px;
 
     .calendar-style{
         width: 100%;
@@ -34,4 +34,50 @@ export const Desc = styled.div`
     margin-top: 20px;
     font-size: 18px;
 `
+export const Modal = styled.div`
+    padding: 15px 15px;
+    padding-top: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 100%;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+`
+export const Header = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+`
+export const DateC = styled.div`
+    font-size: 15px;
+`
+export const Button = styled.button`
+    border: 0;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 3px 7px;
+    font-size: 15px;
+`
+
+export const Task = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 15px;
+    color: ${props => props.done ? '#8CC654' : '#EA5766'}
+`
+export const TitleT = styled.div`
+    word-break: break-all;
+    margin-right: 20px;
+`
+export const Status = styled.div`
+    margin-left: 5px;
+    min-width: 110px;
+    text-align: right;
+`
+
 
