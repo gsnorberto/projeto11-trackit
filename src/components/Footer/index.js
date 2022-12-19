@@ -17,9 +17,9 @@ export default () => {
     let { habitsPercentage } = useContext(Context);
     
     return (
-        <FooterArea>
-            <Button onClick={() => handleNavigate("/habitos")} color={mainColor}> Hábitos </Button>
-            <CenterButton onClick={() => handleNavigate("/hoje")} color={mainColor}>
+        <FooterArea data-test="menu">
+            <Button data-test="habit-link" onClick={() => handleNavigate("/habitos")} color={mainColor}> Hábitos </Button>
+            <CenterButton data-test="today" onClick={() => handleNavigate("/hoje")} color={mainColor}>
                 <CircularProgressbar
                     className="progressBar"
                     value={habitsPercentage}
@@ -34,7 +34,7 @@ export default () => {
                     })}
                 />
             </CenterButton>
-            <Button onClick={() => handleNavigate("/historico")} color={mainColor}>Histórico</Button>
+            <Button data-test="history-link" onClick={() => handleNavigate("/historico")} color={mainColor}>Histórico</Button>
         </FooterArea>
     );
 }

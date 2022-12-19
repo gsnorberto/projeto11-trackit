@@ -82,13 +82,14 @@ export default () => {
         <HabitsArea color={backgroundColor}>
             <AddHabit>
                 <Title color={secondaryColor}>Meus hábitos</Title>
-                <Button onClick={() => setShowRegister(true)} color={mainColor}>+</Button>
+                <Button data-test="habit-create-btn" onClick={() => setShowRegister(true)} color={mainColor}>+</Button>
             </AddHabit>
 
             {/* Área de cadastro de hábito */}
             {showRegister &&
-                <NewHabit>
+                <NewHabit data-test="habit-create-container" >
                     <Input
+                        data-test="habit-name-input" 
                         disabled={loading}
                         value={habitName}
                         onChange={(e) => setHabitName(e.target.value)}
@@ -103,8 +104,8 @@ export default () => {
                         />
                     </DaysWeek>
                     <ButtonsArea>
-                        <CancelButton onClick={() => setShowRegister(false)} color={mainColor}>Cancelar</CancelButton>
-                        <ConfirmButton disabled={loading} onClick={addHabit} color={mainColor}>
+                        <CancelButton data-test="habit-create-cancel-btn" onClick={() => setShowRegister(false)} color={mainColor}>Cancelar</CancelButton>
+                        <ConfirmButton data-test="habit-create-save-btn" disabled={loading} onClick={addHabit} color={mainColor}>
                             <ThreeDots
                                 height="30"
                                 width="40"

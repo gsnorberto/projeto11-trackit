@@ -54,6 +54,7 @@ export default () => {
 
             <Form onSubmit={handleUserRegister}>
                 <Input
+                    data-test="email-input"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
@@ -63,6 +64,7 @@ export default () => {
                     disabled={loading}
                 />
                 <Input
+                    data-test="password-input"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     type="password"
@@ -72,6 +74,7 @@ export default () => {
                     disabled={loading}
                 />
                 <Input
+                    data-test="user-name-input"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     type="text"
@@ -81,6 +84,7 @@ export default () => {
                     disabled={loading}
                 />
                 <Input
+                     data-test="user-image-input"
                     value={image}
                     onChange={(e) => setImage(e.target.value)}
                     type="text"
@@ -89,7 +93,7 @@ export default () => {
                     placeholder="foto"
                     disabled={loading}
                 />
-                <Button disabled={loading} type="submit" color={mainColor}>
+                <Button data-test="signup-btn" disabled={loading} type="submit" color={mainColor}>
                     <ThreeDots
                         height="30"
                         width="40"
@@ -104,7 +108,7 @@ export default () => {
                 </Button>
             </Form>
 
-            <Btn color={mainColor}> <Link to="/">Já tem uma conta? Faça login!</Link> </Btn>
+            <Btn color={mainColor}> <Link  data-test="login-link" to="/">Já tem uma conta? Faça login!</Link> </Btn>
 
         </RegisterArea>
     );

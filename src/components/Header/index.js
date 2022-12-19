@@ -19,7 +19,7 @@ export default () => {
     }
 
     return (
-        <HeaderArea color={secondaryColor}>
+        <HeaderArea data-test="header" color={secondaryColor}>
             <Title>TrackIt</Title>
             <Menu>
                 <div className="column">

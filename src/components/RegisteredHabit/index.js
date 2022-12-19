@@ -30,13 +30,13 @@ export default ({ id, name, days, getHabits }) => {
     }
 
     return (
-        <HabitArea>
-            <Title color={textColor}>{name}</Title>
+        <HabitArea data-test="habit-container">
+            <Title data-test="habit-name" color={textColor}>{name}</Title>
             <DayWeekButtons
                 selectedDays={days}
                 disabled={true}
             />
-            <TrashButton onClick={handleDeleteHabit} color={textColor} src={trashIcon} />
+            <TrashButton data-test="habit-delete-btn" onClick={handleDeleteHabit} color={textColor} src={trashIcon} />
         </HabitArea>
     );
 }

@@ -68,7 +68,7 @@ export default () => {
 
     return (
         <TodayArea color={backgroundColor}>
-            <Title color={secondaryColor}>{dayOfWeek(dayJS.day())}, {dayJS.date()}/{dayJS.month() + 1}</Title>
+            <Title data-test="today" color={secondaryColor}>{dayOfWeek(dayJS.day())}, {dayJS.date()}/{dayJS.month() + 1}</Title>
 
             {/* Sem hábitos cadastrados para o dia atual */}
             {habitsToday.length === 0 &&
@@ -79,8 +79,8 @@ export default () => {
             {habitsToday.length > 0 &&
                 <>
                     {habitsPercentage === 0 ?
-                        <SubTitle color="#BABABA">Nenhum hábito concluído ainda</SubTitle> :
-                        <SubTitle color="#8FC549">{habitsPercentage}% dos hábitos concluídos</SubTitle>
+                        <SubTitle data-test="today-counter" color="#BABABA">Nenhum hábito concluído ainda</SubTitle> :
+                        <SubTitle data-test="today-counter" color="#8FC549">{habitsPercentage}% dos hábitos concluídos</SubTitle>
                     }
 
                     {habitsToday.map(habit => (

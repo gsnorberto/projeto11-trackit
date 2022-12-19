@@ -39,7 +39,7 @@ export default () => {
 
         axios.get(BASE_URL + '/habits/history/daily', config)
             .then((response) => {
-                sethistoryData(response.data)
+                sethistoryData(response.data);
                 dateTaks(response.data);
             })
             .catch(error => {
@@ -101,6 +101,7 @@ export default () => {
             {!loading &&
                 <>
                     <Calendar
+                        data-test="calendar"
                         className="calendar-style"
                         onChange={setCalendar}
                         value={calendar}

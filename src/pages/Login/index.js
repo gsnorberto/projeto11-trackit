@@ -57,6 +57,7 @@ export default () => {
             <Logo src={logoImg} />
             <Form onSubmit={handleLogin}>
                 <Input
+                    data-test="email-input"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     color={textColor}
@@ -66,6 +67,7 @@ export default () => {
                     disabled={loading}
                 />
                 <Input
+                    data-test="password-input"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     color={textColor}
@@ -74,7 +76,7 @@ export default () => {
                     type="password"
                     disabled={loading}
                 />
-                <Button type="submit" disabled={loading} color={mainColor}>
+                <Button data-test="login-btn" type="submit" disabled={loading} color={mainColor}>
                     <ThreeDots
                         height="30"
                         width="40"
@@ -89,7 +91,7 @@ export default () => {
                 </Button>
             </Form>
 
-            <Btn color={mainColor}> <Link to="/cadastro">Não tem uma conta? Cadastre-se</Link> </Btn>
+            <Btn color={mainColor}> <Link data-test="signup-link" to="/cadastro">Não tem uma conta? Cadastre-se</Link> </Btn>
 
 
         </LoginArea>

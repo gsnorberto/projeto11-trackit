@@ -11,7 +11,6 @@ export default ({ id, name, done, currentSequence, highestSequence, getHabitsTod
     let { userData } = useContext(Context);
     let navigate = useNavigate();
 
-
     // Marcar hábito como feito
     const handleCheckHabit = () => {
         let url;
@@ -37,16 +36,16 @@ export default ({ id, name, done, currentSequence, highestSequence, getHabitsTod
     }
 
     return (
-        <TaskArea>
+        <TaskArea data-test="today-habit-container">
             <TextArea>
-                <Title color={textColor}>{name}</Title>
-                <SubTitle color={textColor}>
+                <Title data-test="today-habit-name"  color={textColor}>{name}</Title>
+                <SubTitle data-test="today-habit-sequence" color={textColor}>
                     Sequência atual:{'\u00A0'}
                     <Span color={done ? '#8FC549' : ''}>
                         {currentSequence} dias
                     </Span>
                 </SubTitle>
-                <SubTitle color={textColor}>
+                <SubTitle data-test="today-habit-record" color={textColor}>
                     Seu recorde: {'\u00A0'}
                     <Span color={currentSequence === highestSequence && currentSequence !== 0 ? '#8FC549' : ''}>
                         {highestSequence} dias
@@ -54,6 +53,7 @@ export default ({ id, name, done, currentSequence, highestSequence, getHabitsTod
                 </SubTitle>
             </TextArea>
             <IoCheckbox
+                data-test="today-habit-check-btn"
                 color={done ? '#8FC549' : '#EBEBEB'}
                 cursor='pointer'
                 fontSize="69px"
