@@ -37,7 +37,7 @@ export default () => {
                 .then((response) => {
                     setLoading(false);
                     let dataU = {
-                        name: response.data.name,
+                        name: response.data.name.split(' ')[0],
                         image: response.data.image,
                         token: response.data.token
                     }
